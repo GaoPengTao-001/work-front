@@ -23,14 +23,16 @@
 </template>
 
 <script>
-export default {
+  import {getFun} from "@/api/api"
+
+  export default {
   name: 'Menu',
   data () {
     return {
-      menu:[{'id':'1','name':'导航一','menu':[{'id':'2','name':'导航二'},{'id':'3','name':'导航三'}]}],
-      msg: 'Welcome to Your Vue.js App123456'
+      menu:[{'id':'1','name':'导航一','menu':[{'id':'2','name':'导航二'},{'id':'3','name':'导航三'}]}]
     }
   },
+
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -40,6 +42,12 @@ export default {
     },
     handleChange(menu) {
       console.log(menu.id);
+      getFun().then((res)=>{
+        console.log('1111111')
+        console.log(res)
+      }).catch((err)=>{
+        console.log("err==>",err);
+      })
     }
   }
 }

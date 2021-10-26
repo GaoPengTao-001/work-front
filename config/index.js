@@ -10,11 +10,21 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/api': {
+        //要访问的跨域的域名
+        target: 'http://localhost:18080/',
+        ws: true,
+        secure:false, // 使用的是http协议则设置为false，https协议则设置为true
+        changOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8089, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 19998, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
