@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import {getFun} from "@/api/api"
+  import {getFun} from "@/request/api"
 
   export default {
   name: 'Menu',
@@ -43,7 +43,6 @@
     handleChange(menu) {
       console.log(menu.id);
       getFun().then((res)=>{
-        console.log('1111111')
         console.log(res)
       }).catch((err)=>{
         console.log("err==>",err);

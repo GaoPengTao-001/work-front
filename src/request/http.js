@@ -57,14 +57,11 @@ axios.interceptors.response.use(
  */
 
 export function get(url, params = {}) {
-  console.log('response')
   return new Promise((resolve, reject) => {
-    axios
-      .get(url, {
+    axios.get(url, {
         params: params
       })
       .then(response => {
-        console.log('response',response)
         resolve(response.data);
       })
       .catch(err => {
