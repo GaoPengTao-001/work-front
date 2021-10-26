@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col :span="12">
+    <el-col :span="4">
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
@@ -10,23 +10,30 @@
         text-color="#fff"
         active-text-color="#ffd04b"
         v-for="imenu in menu">
-        <el-submenu :index="imenu.id">
+        <el-submenu :index="imenu.id.toString()">
           <template slot="title">
             <i class="el-icon-location"></i>
             <span>{{imenu.name}}</span>
           </template>
-          <el-menu-item :index="menuItem.id" v-for="menuItem in imenu.functionList"  @click=handleChange(menuItem)>{{menuItem.name}}</el-menu-item>
+          <el-menu-item :index="menuItem.id.toString()" v-for="menuItem in imenu.functionList"  @click=handleChange(menuItem)>{{menuItem.name}}</el-menu-item>
         </el-submenu>
       </el-menu>
+    </el-col>
+    <el-col :span="10">
+      <my-component></my-component>
     </el-col>
   </el-row>
 </template>
 
 <script>
   import {getFun} from "@/request/api"
+  import myComponent from '@/components/redis/Temp.vue'
 
   export default {
   name: 'Menu',
+  components: {
+      myComponent
+    },
   data () {
     return {
       menu:[]
@@ -51,12 +58,9 @@
       getFun().then((res)=>{
         console.log(res)
         this.menu = res
-        console.log(this.menu)
       }).catch((err)=>{
         console.log("err==>",err);
       })
-
-
     }
   }
   }
@@ -79,7 +83,7 @@ a {
   color: #42b983;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+  width: 240px;
+  /*min-height: 400px;*/
 }
 </style>
