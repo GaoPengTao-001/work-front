@@ -15,7 +15,7 @@
             <i class="el-icon-location"></i>
             <span>{{imenu.name}}</span>
           </template>
-          <el-menu-item :index="menuItem.id" v-for="menuItem in imenu.menu"  @click=handleChange(menuItem)>{{menuItem.name}}</el-menu-item>
+          <el-menu-item :index="menuItem.id" v-for="menuItem in imenu.functionList"  @click=handleChange(menuItem)>{{menuItem.name}}</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-col>
@@ -29,10 +29,12 @@
   name: 'Menu',
   data () {
     return {
-      menu:[{'id':'1','name':'导航一','menu':[{'id':'2','name':'导航二'},{'id':'3','name':'导航三'}]}]
+      menu:[]
     }
   },
-
+  created() {
+    this.queryFun();
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -42,14 +44,22 @@
     },
     handleChange(menu) {
       console.log(menu.id);
+
+    },
+    // 查询菜单
+    queryFun(){
       getFun().then((res)=>{
         console.log(res)
+        this.menu = res
+        console.log(this.menu)
       }).catch((err)=>{
         console.log("err==>",err);
       })
+
+
     }
   }
-}
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
