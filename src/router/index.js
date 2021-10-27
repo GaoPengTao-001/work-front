@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Menu from '@/components/Menu'
+import RedisData from '@/components/redis/RedisData'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Menu',
-      component: Menu
-    }
+      //路由路径
+      path:'/redis/Temp',
+      //自定义路由名称
+      name:'RedisData',
+      //路由跳转的组件
+      component:RedisData
+    },
   ]
 })

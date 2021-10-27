@@ -1,6 +1,5 @@
 <template>
   <el-row class="tac">
-    <el-col :span="4">
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
@@ -18,21 +17,16 @@
           <el-menu-item :index="menuItem.id.toString()" v-for="menuItem in imenu.functionList"  @click=handleChange(menuItem)>{{menuItem.name}}</el-menu-item>
         </el-submenu>
       </el-menu>
-    </el-col>
-    <el-col :span="10">
-      <my-component></my-component>
-    </el-col>
   </el-row>
 </template>
 
 <script>
   import {getFun} from "@/request/api"
-  import myComponent from '@/components/redis/Temp.vue'
 
   export default {
   name: 'Menu',
   components: {
-      myComponent
+
     },
   data () {
     return {
@@ -41,6 +35,7 @@
   },
   created() {
     this.queryFun();
+    this.$router.push({ path: '/redis/Temp' });
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -51,7 +46,6 @@
     },
     handleChange(menu) {
       console.log(menu.id);
-
     },
     // 查询菜单
     queryFun(){

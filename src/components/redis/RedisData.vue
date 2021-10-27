@@ -37,7 +37,7 @@
   import {saveStr,getStr} from "@/request/api"
   export default {
     // 组件名称
-    name: "myComponent",
+    name: "RedisData",
     // 组件数据
     data: function() {
       return {
