@@ -8,7 +8,7 @@ export default new Router({
   routes: [
     {
       //路由路径
-      path:'/redis/Temp',
+      path:'/redis/RedisData',
       //自定义路由名称
       name:'RedisData',
       //路由跳转的组件

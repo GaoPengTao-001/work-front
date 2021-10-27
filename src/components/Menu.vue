@@ -1,7 +1,7 @@
 <template>
   <el-row class="tac">
       <el-menu
-        default-active="2"
+        :default-active="active"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
@@ -30,12 +30,12 @@
     },
   data () {
     return {
-      menu:[]
+      menu:[],
+      active:''
     }
   },
   created() {
     this.queryFun();
-    this.$router.push({ path: '/redis/Temp' });
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -45,13 +45,15 @@
       console.log(key, keyPath);
     },
     handleChange(menu) {
-      console.log(menu.id);
+      this.$router.push({ path: menu.path })
     },
     // 查询菜单
     queryFun(){
+      let _this = this
       getFun().then((res)=>{
-        console.log(res)
-        this.menu = res
+        _this.menu = res
+        _this.$router.push({ path: _this.menu[0].functionList[0].path })
+        _this.active = _this.menu[0].functionList[0].id.toString()
       }).catch((err)=>{
         console.log("err==>",err);
       })
