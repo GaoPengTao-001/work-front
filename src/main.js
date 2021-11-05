@@ -8,6 +8,10 @@ import axios from 'axios';
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { Swipe, SwipeItem } from 'vant';
+
+Vue.use(Swipe);
+Vue.use(SwipeItem);
 
 Vue.prototype.$axios = axios
 axios.defaults.baseURL = '/api'

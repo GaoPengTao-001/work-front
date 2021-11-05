@@ -33,8 +33,8 @@
 
     <el-form-item label="hash-val">
       <div  v-for="(item ,index) in form.hashVal" style="margin-bottom: 10px;">
-        <el-input v-model="form.hashVal[index].key"></el-input>
-        <el-input v-model="form.hashVal[index].value"></el-input>
+        <el-input v-model="form.hashVal[index].key" placeholder="请输入hash的key"></el-input>
+        <el-input v-model="form.hashVal[index].value" placeholder="请输入hash的value"></el-input>
       </div>
       <el-button type="primary" @click="addHashVal()">+</el-button>
     </el-form-item>
@@ -50,7 +50,7 @@
 
     <el-form-item label="set-val">
       <div  v-for="(item ,index) in form.setVal">
-        <el-input v-model="form.setVal[index]"></el-input>
+        <el-input v-model="form.setVal[index]" placeholder="请输入无序集合的value"></el-input>
       </div>
       <el-button type="primary" @click="addSetVal()">+</el-button>
     </el-form-item>
@@ -65,14 +65,17 @@
 
     <el-form-item label="zset-val">
       <div  v-for="(item ,index) in form.zsetVal">
-        <el-input v-model="form.zsetVal[index].value"></el-input>
-        <el-input v-model="form.zsetVal[index].score"></el-input>
+        <el-input v-model="form.zsetVal[index].value" placeholder="请输入有序集合的value"></el-input>
+        <el-input v-model="form.zsetVal[index].score" placeholder="请输入有序集合的顺序数"></el-input>
       </div>
       <el-button type="primary" @click="addZSetVal()">+</el-button>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="saveZSet()">保存</el-button>
       <el-button type="primary" @click="getZSet()">查询</el-button>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="open()">设置过期时间</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -196,13 +199,18 @@
       })
     },
       getZSet(){
-      let data = {'key':this.form.hashKey,'score1':1,'score2':100,}
+      let data = {'key':this.form.zsetKey,'score1':1,'score2':100,}
         zsGet(data).then((res)=>{
         console.log(res)
       }).catch((err)=>{
         console.log("err==>",err);
       })
     },
+    open() {
+      this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
+        dangerouslyUseHTMLString: true
+      });
+      }
     }
   }
 </script>

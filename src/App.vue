@@ -2,7 +2,7 @@
   <div id="app">
     <el-row>
       <el-col :span="4">
-        <Menu/>
+        <!--<Menu/>-->
       </el-col>
       <el-col :span="20">
         <router-view />
